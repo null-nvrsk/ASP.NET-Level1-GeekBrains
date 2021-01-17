@@ -20,7 +20,7 @@ namespace WebStore.Controllers
         {
             return View();
         }
-        
+
         public IActionResult SecondAction()
         {
             return View("SecondView");
