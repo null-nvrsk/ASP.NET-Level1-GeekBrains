@@ -30,5 +30,11 @@ namespace WebStore.Controllers
         {
             return View(employees);
         }
+
+        public IActionResult Details(int id)
+        {
+            return View();
+        }
+
     }
 }
