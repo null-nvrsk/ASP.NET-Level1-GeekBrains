@@ -5,16 +5,22 @@
     {
       "library": "jquery@1.10.2",
       "destination": "wwwroot/lib/jquery/"
+    },
+    //{
+    //  "library": "jquery@3.5.1",
+    //  "destination": "wwwroot/lib/jquery-3/"
+    //},
+    {
+      "library": "twitter-bootstrap@3.0.3",
+      "destination": "wwwroot/lib/bootstrap/"
+    },
+    //{
+    //  "library": "twitter-bootstrap@4.6.0",
+    //  "destination": "wwwroot/lib/twitter-bootstrap-4/"
+    //},
+    {
+      "library": "font-awesome@4.0.3",
+      "destination": "wwwroot/lib/font-awesome/"
     }
-  ,
-{
-  "library": "twitter-bootstrap@3.0.3",
-  "destination": "wwwroot/lib/bootstrap/"
-}
-,
-{
-  "library": "font-awesome@4.0.3",
-  "destination": "wwwroot/lib/font-awesome/"
-}
-]
+  ]
 }
