@@ -22,13 +22,22 @@
                     <td>@employee.FirstName</td>
                     <td>@employee.Patronymic</td>
                     <td>@employee.Age</td>
-                    @*<td><a href="/Home/Details/@employee.Id">Детали</a></td>*@
-                    <td><a asp-action="Details" asp-route-id="@employee.Id">Детали</a></td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@employee.Id">
+                            <i class="fa fa-info-circle"></i>
+                        </a> | 
+                        <a href="#">
+                            <i class="fa fa-edit"></i>
+                        </a> | 
+                        <a href="#" class="text-danger">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 
     <hr />
-    <a href="~/">Главная</a>
+    <a asp-controller="Home" asp-action="Index">Вернуться на главную</a>
 </div>
