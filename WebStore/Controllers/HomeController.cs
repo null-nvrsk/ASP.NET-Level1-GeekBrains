@@ -13,5 +13,51 @@ namespace WebStore.Controllers
         {
             return View();
         }
+
+        public IActionResult Shop()
+        {
+            return View("Shop");
+        }
+
+        public IActionResult PorductDetails()
+        {
+            return View("PorductDetails");
+        }
+
+        public IActionResult Checkout()
+        {
+            return View("Checkout");
+        }
+
+        public IActionResult Cart()
+        {
+            return View("Cart");
+        }
+        public IActionResult Login()
+        {
+            return View("Login");
+        }
+
+        public IActionResult Blog()
+        {
+            return View("Blog");
+        }
+        
+        public IActionResult BlogSingle()
+        {
+            return View("BlogSingle");
+        }    
+
+        public IActionResult ContactUs()
+        {
+            return View("ContactUs");
+        }             
+        
+        public IActionResult NotFound404()
+        {
+            return View("NotFound404");
+        }
+
+
     }
 }
