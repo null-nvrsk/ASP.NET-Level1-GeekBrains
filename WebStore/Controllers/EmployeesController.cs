@@ -14,7 +14,7 @@ namespace WebStore.Controllers
 
         public EmployeesController()
         {
-            _employees = TestData.employees;
+            _employees = TestData.Employees;
         }
 
         public IActionResult Index()
