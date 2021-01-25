@@ -4,30 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Data;
+using WebStore.Infrastructure.Interfaces;
 using WebStore.Models;
 
 namespace WebStore.Controllers
 {
     public class EmployeesController : Controller
     {
-        private List<Employee> _employees;
+        private readonly IEmployeesData _EmployeesData;
 
-        public EmployeesController()
+        public EmployeesController(IEmployeesData employeesData)
         {
-            _employees = TestData.Employees;
+            _EmployeesData = employeesData;
         }
 
         public IActionResult Index()
         {
-            return View(_employees);
+            return View(_EmployeesData.Get());
         }
 
         public IActionResult Details(int id)
         {
-            var employee = _employees.FirstOrDefault(e => e.Id == id);
+            var employee = _EmployeesData.Get(id);
             if (employee is not null)
                 return View(employee);
             return NotFound();
         }
     }
 }
+ 

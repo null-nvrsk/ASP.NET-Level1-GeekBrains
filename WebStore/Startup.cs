@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebStore.Infrastructure.Interfaces;
+using WebStore.Infrastructure.Services;
 
 namespace WebStore
 {
@@ -20,6 +22,8 @@ namespace WebStore
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
+
             services
                 .AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
