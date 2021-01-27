@@ -32,6 +32,11 @@ namespace WebStore.Controllers
             return NotFound();
         }
 
+        public IActionResult Create()
+        {
+            return View("Edit", new EmployeeViewModel());
+        }
+
         #region Edit            
 
         [HttpGet]
@@ -72,7 +77,10 @@ namespace WebStore.Controllers
                 Department = model.Department
             };
 
-            _EmployeesData.Update(employee);
+            if (employee.Id == 0)
+                _EmployeesData.Add(employee);
+            else
+                _EmployeesData.Update(employee);
 
             return RedirectToAction("Index");
         }
