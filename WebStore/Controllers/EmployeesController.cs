@@ -32,6 +32,7 @@ namespace WebStore.Controllers
             return NotFound();
         }
 
+        #region Edit            
 
         [HttpGet]
         public IActionResult Edit(int id)
@@ -43,7 +44,7 @@ namespace WebStore.Controllers
             if (employee is null) return NotFound();
 
             return View(new EmployeeViewModel
-            { 
+            {
                 Id = employee.Id,
                 LastName = employee.LastName,
                 Name = employee.FirstName,
@@ -66,7 +67,7 @@ namespace WebStore.Controllers
                 LastName = model.LastName,
                 FirstName = model.Name,
                 Patronymic = model.MiddleName,
-                Age = model.Age, 
+                Age = model.Age,
                 Position = model.Position,
                 Department = model.Department
             };
@@ -75,6 +76,39 @@ namespace WebStore.Controllers
 
             return RedirectToAction("Index");
         }
+
+        #endregion
+
+        #region Delete
+
+        public IActionResult Delete(int id)
+        {
+            if (id <= 0) return BadRequest();
+
+            var employee = _EmployeesData.Get(id);
+
+            if (employee is null) return NotFound();
+
+            return View(new EmployeeViewModel
+            {
+                Id = employee.Id,
+                LastName = employee.LastName,
+                Name = employee.FirstName,
+                MiddleName = employee.Patronymic,
+                Age = employee.Age,
+                Position = employee.Position,
+                Department = employee.Department
+            });
+        }
+
+        [HttpPost]
+        public IActionResult DeleteConfermed(int id)
+        {
+            _EmployeesData.Delete(id);
+            return RedirectToAction("Index");
+        }
+
+        #endregion
     }
 }
  

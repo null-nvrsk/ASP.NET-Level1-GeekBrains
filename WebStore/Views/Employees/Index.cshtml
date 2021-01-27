@@ -25,13 +25,14 @@
                     <td>
                         <a asp-action="Details" asp-route-id="@employee.Id">
                             <i class="fa fa-info-circle"></i>
-                        </a> | 
+                        </a> |
                         <a asp-action="Edit" asp-route-id="@employee.Id">
                             <i class="fa fa-edit"></i>
-                        </a> | 
-                        <a href="#" class="text-danger">
-                            <i class="fa fa-trash-o"></i>
-                        </a>
+                        </a> | <form asp-action="DeleteConfermed" asp-route-id="@employee.Id">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             }
