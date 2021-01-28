@@ -24,6 +24,10 @@ namespace WebStore
         {
             services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
 
+            //services.AddTransient<>();
+            //services.AddScoped<>();
+            //services.AddSingleton<>();
+
             services
                 .AddControllersWithViews()
                 .AddRazorRuntimeCompilation();

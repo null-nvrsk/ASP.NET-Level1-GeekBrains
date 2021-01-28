@@ -66,6 +66,11 @@ namespace WebStore.Controllers
             if (model is null)
                 throw new ArgumentNullException(nameof(model));
 
+            if (model.Name == "Усама" && model.MiddleName == "бен" && model.LastName == "Ладен")
+                ModelState.AddModelError("", "Вы уже умерли!");
+
+            if (!ModelState.IsValid) return View(model);
+
             var employee = new Employee
             {
                 Id = model.Id,
@@ -119,4 +124,3 @@ namespace WebStore.Controllers
         #endregion
     }
 }
- 
