@@ -10,8 +10,8 @@ namespace WebStore.Infrastructure.Services
 {
     public class InMemoryProductData : IProductData
     {
-        public IEnumerable<Brand> Brands => TestData.Brands;
+        public IEnumerable<Section> GetSections() => TestData.Sections;
 
-        public IEnumerable<Section> Sections => TestData.Sections;
+        public IEnumerable<Brand> GetBrands() => TestData.Brands;
     }
 }
