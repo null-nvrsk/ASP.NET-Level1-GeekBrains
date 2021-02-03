@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebStore.Domain.Entities;
 
-namespace WebStrore.DAL.Context
+namespace WebStore.DAL.Context
 {
     public class WebStoreDB : DbContext
     {
