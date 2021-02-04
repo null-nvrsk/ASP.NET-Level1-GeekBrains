@@ -6,7 +6,7 @@ using WebStore.Data;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.Models;
 
-namespace WebStore.Infrastructure.Services
+namespace WebStore.Infrastructure.Services.InMemory
 {
     public class InMemoryEmployeesData : IEmployeesData
     {
@@ -39,7 +39,7 @@ namespace WebStore.Infrastructure.Services
         {
             if (employee is null) throw new ArgumentNullException(nameof(employee));
 
-            if(_Employees.Contains(employee)) return;
+            if (_Employees.Contains(employee)) return;
 
             var db_item = Get(employee.Id);
             if (db_item is null) return;
