@@ -20,9 +20,10 @@ namespace WebStore.Components
             _productData.GetBrands()
                 .OrderBy(brand => brand.Order)
                 .Select(brand => new BrandsViewModel
-                { 
+                {
                     Id = brand.Id,
-                    Name = brand.Name
+                    Name = brand.Name,
+                    ProductCount = brand.Products.Count()
                 });
 
     }
