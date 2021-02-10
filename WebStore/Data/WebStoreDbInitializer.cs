@@ -127,9 +127,9 @@ namespace WebStore.Data
             {
                 if (!await _RoleManager.RoleExistsAsync(RoleName))
                 {
-                    _Logger.LogInformation("Роль {0} отсутвует. Создаю...");
+                    _Logger.LogInformation($"Роль {RoleName} отсутвует. Создаю...");
                     await _RoleManager.CreateAsync(new Role { Name = RoleName });
-                    _Logger.LogInformation("Роль {0} создана успешно");
+                    _Logger.LogInformation($"Роль {RoleName} создана успешно");
                 }
             }
 

@@ -34,7 +34,7 @@ namespace WebStore.Controllers
         {
             if (!ModelState.IsValid) return View(Model);
 
-            _Logger.LogInformation("Регистрация пользователя {0}", Model.UserName);
+            _Logger.LogInformation($"Регистрация пользователя {Model.UserName}");
 
             var user = new User
             {
@@ -44,7 +44,10 @@ namespace WebStore.Controllers
             var registration_result = await _UserManager.CreateAsync(user, Model.Password);
             if (registration_result.Succeeded)
             {
-                _Logger.LogInformation("Пользователь {0} успешно зарегистрирован", Model.UserName);
+                _Logger.LogInformation($"Пользователь {Model.UserName} успешно зарегистрирован");
+
+                await _UserManager.AddToRoleAsync(user, Role.Users);
+                _Logger.LogInformation($"Пользователь {Model.UserName} наделен ролью {Role.Users}");
 
                 await _SignInManager.SignInAsync(user, false);
 
