@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,7 +11,7 @@ using WebStore.ViewModels;
 
 namespace WebStore.Controllers
 {
-    //[Controller]
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<User> _UserManager;
@@ -27,14 +28,16 @@ namespace WebStore.Controllers
         #region Register
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register() => View(new RegisterUserViewModel());
 
         [HttpPost, ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterUserViewModel Model)
         {
             if (!ModelState.IsValid) return View(Model);
 
-            _Logger.LogInformation("Регистрация пользователя {0}", Model.UserName);
+            _Logger.LogInformation($"Регистрация пользователя {Model.UserName}");
 
             var user = new User
             {
@@ -44,7 +47,10 @@ namespace WebStore.Controllers
             var registration_result = await _UserManager.CreateAsync(user, Model.Password);
             if (registration_result.Succeeded)
             {
-                _Logger.LogInformation("Пользователь {0} успешно зарегистрирован", Model.UserName);
+                _Logger.LogInformation($"Пользователь {Model.UserName} успешно зарегистрирован");
+
+                await _UserManager.AddToRoleAsync(user, Role.Users);
+                _Logger.LogInformation($"Пользователь {Model.UserName} наделен ролью {Role.Users}");
 
                 await _SignInManager.SignInAsync(user, false);
 
@@ -66,12 +72,14 @@ namespace WebStore.Controllers
         #region Login
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login(string ReturnUrl) => View(new LoginViewModel
         {
             ReturnUrl = ReturnUrl
         });
 
         [HttpPost, ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel Model)
         {
             if (!ModelState.IsValid) return View(Model);
