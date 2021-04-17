@@ -1,0 +1,52 @@
+﻿@using WebStore.Domain.Entities.Identity
+@model WebStore.Domain.Models.Employee
+
+@{
+    ViewData["Title"] = $"Сотрудник №{Model.Id}";
+}
+
+<div class="container">
+    <h3>Сотрудник</h3>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th class="col-sm-2">Id</th>
+                <td class="col-sm-10">@Model.Id</td>
+            </tr>
+            <tr>
+                <th class="col-sm-2">Фамилия</th>
+                <td class="col-sm-10">@Model.LastName</td>
+            </tr>
+            <tr>
+                <th class="col-sm-2">Имя</th>
+                <td class="col-sm-10">@Model.FirstName</td>
+            </tr>
+            <tr>
+                <th class="col-sm-2">Отчество</th>
+                <td class="col-sm-10">@Model.Patronymic</td>
+            </tr>
+            <tr>
+                <th class="col-sm-2">Возраст</th>
+                <td class="col-sm-10">@Model.Age</td>
+            </tr>
+            <tr>
+                <th class="col-sm-2">Должность</th>
+                <td class="col-sm-10">@Model.Position</td>
+            </tr>
+            <tr>
+                <th class="col-sm-2">Отдел</th>
+                <td class="col-sm-10">@Model.Department</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+
+    <a asp-action="Index" class="btn btn-default">К списку</a>
+    @if (User.IsInRole(Role.Administrator))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактировать</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Удалить</a>
+    }
+</div>
